@@ -1,20 +1,27 @@
-const points: number[] = [49, 48, 25];
-const cities: Array<string | number> = ['London', 'Zurich', 'New York', 55];
+type User = {
+  level: number;
+  name: string;
+  gold: number;
+};
 
-const emptyArray = [];
+const user: User = { 
+  name: 'Kuba',
+  level: 15,
+  gold: 1200,
+};
 
-type User = [
-  name: string, 
-  points: number, 
-  status: string
-];
-const user: User = ['Kuba', 49, 'active'];
+const { level, ...rest } = user;
+const user2 = {
+  ...user,
+  name: 'JS Dzem',
+};
 
-const point4 = points[3];
-const [, ...cities2] = cities;
-const [name1, points1, status1] = user;
-const someData = emptyArray[100];
+user.name = 'Adam';
 
-const things = [...cities, 66, 0];
+const newCollection = [];
+newCollection[0] = 'pierwszy element';
+newCollection[1] = 'drugi element';
 
-console.log(things);
+// niedozwolone operacje
+// user = {};
+// newCollection = [];
