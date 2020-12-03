@@ -1,27 +1,29 @@
-type User = {
-  level: number;
+type Props = {
+  color: string;
   name: string;
-  gold: number;
 };
 
-const user: User = { 
-  name: 'Kuba',
-  level: 15,
-  gold: 1200,
-};
+type Component = ({
+  color,
+  name,
+}: Props) => string
 
-const { level, ...rest } = user;
-const user2 = {
-  ...user,
-  name: 'JS Dzem',
-};
+const createSidebar: Component = ({ color, name }) => {
+  return `I am a ${color} ${name}!`;
+}
 
-user.name = 'Adam';
+const createHeader: Component = ({ color, name }) => {
+  return `I am a ${color} ${name}!`;
+}
 
-const newCollection = [];
-newCollection[0] = 'pierwszy element';
-newCollection[1] = 'drugi element';
+const createFooter: Component = ({ color, name }) => {
+  return `I am a ${color} ${name}!`;
+}
 
-// niedozwolone operacje
-// user = {};
-// newCollection = [];
+const sidebar = createSidebar({ color: 'green', name: 'sidebar' });
+const header = createHeader({ color: 'red', name: 'header' });
+const footer = createFooter({ color: 'yellow', name: 'footer' });
+
+console.log(sidebar);
+console.log(header);
+console.log(footer);
