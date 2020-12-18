@@ -1,10 +1,6 @@
 const app = document.getElementById('app')!;
 
-type Props = {
-  children: string;
-};
-
-type Component = (pros: Props) => string
+type Component<Props = {}> = (props: Props & { children: string } ) => string
 
 const App: Component = ({ children }) => {
   return `
@@ -14,9 +10,12 @@ const App: Component = ({ children }) => {
   `;
 }
 
-const Sidebar: Component = ({ children }) => {
+const Sidebar: Component<{ 
+  title: string;
+}> = ({ children, title }) => {
   return `
     <section>
+      <h2>${title}</h2>
       ${children}
     </section>
   `;
@@ -40,7 +39,7 @@ const Footer: Component = ({ children }) => {
 
 app.innerHTML = `
   ${App({ children: `
-    ${Sidebar({ children: 'sidebar' })}
+    ${Sidebar({ children: 'sidebar', title: 'Hellow World!' })}
     ${Header({ children: 'header' })}
     ${Footer({ children: 'footer' })}
   ` })}
