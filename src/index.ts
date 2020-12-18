@@ -1,29 +1,47 @@
+const app = document.getElementById('app')!;
+
 type Props = {
-  color: string;
-  name: string;
+  children: string;
 };
 
-type Component = ({
-  color,
-  name,
-}: Props) => string
+type Component = (pros: Props) => string
 
-const createSidebar: Component = ({ color, name }) => {
-  return `I am a ${color} ${name}!`;
+const App: Component = ({ children }) => {
+  return `
+    <div>
+      ${children}
+    </div>
+  `;
 }
 
-const createHeader: Component = ({ color, name }) => {
-  return `I am a ${color} ${name}!`;
+const Sidebar: Component = ({ children }) => {
+  return `
+    <section>
+      ${children}
+    </section>
+  `;
 }
 
-const createFooter: Component = ({ color, name }) => {
-  return `I am a ${color} ${name}!`;
+const Header: Component = ({ children }) => {
+  return `
+    <header>
+      ${children}
+    </header>
+  `;
 }
 
-const sidebar = createSidebar({ color: 'green', name: 'sidebar' });
-const header = createHeader({ color: 'red', name: 'header' });
-const footer = createFooter({ color: 'yellow', name: 'footer' });
+const Footer: Component = ({ children }) => {
+  return `
+    <footer>
+      ${children}
+    </footer>
+  `;
+}
 
-console.log(sidebar);
-console.log(header);
-console.log(footer);
+app.innerHTML = `
+  ${App({ children: `
+    ${Sidebar({ children: 'sidebar' })}
+    ${Header({ children: 'header' })}
+    ${Footer({ children: 'footer' })}
+  ` })}
+`;
