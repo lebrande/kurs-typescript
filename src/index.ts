@@ -1,6 +1,9 @@
 const app = document.getElementById('app')!;
 
-type Component<Props = {}> = (props: Props & { children: string } ) => string
+type DefaultProps = { children: string };
+type Component<T extends object = {}> = (
+  props: T & DefaultProps
+) => string;
 
 const App: Component = ({ children }) => {
   return `
@@ -10,9 +13,13 @@ const App: Component = ({ children }) => {
   `;
 }
 
-const Sidebar: Component<{ 
+type SidebarProps = { 
   title: string;
-}> = ({ children, title }) => {
+};
+const Sidebar: Component<SidebarProps> = ({ 
+  children,
+  title,
+}) => {
   return `
     <section>
       <h2>${title}</h2>
